@@ -143,6 +143,26 @@ namespace Server.Accounting
             this.MarkDirty();
         }
 
+        public Account(string username, string password, int accessLevel) : this(Accounts.NewAccount)
+        {
+            _username = username;
+
+            SetPassword(password);
+
+            _accessLevel = (AccessLevel)accessLevel;
+
+            _lastLogin = Core.Now;
+            _totalGameTime = TimeSpan.Zero;
+
+            _mobiles = new Mobile[7];
+
+            _ipRestrictions = Array.Empty<string>();
+            _loginIPs = Array.Empty<IPAddress>();
+
+            Accounts.Add(this);
+            this.MarkDirty();
+        }
+
         public Account(XmlElement node)
         {
             Serial = Accounts.NewAccount;
