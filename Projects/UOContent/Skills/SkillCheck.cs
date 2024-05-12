@@ -116,7 +116,7 @@ public static class SkillCheck
                 gc += (1.0 - chance) * (success ? 0.5 : Core.AOS ? 0.0 : 0.2);
                 gc /= 2;
 
-                gc *= skill.Info.GainFactor;
+                gc *= skill.Info.GainFactor * ServerConfiguration.GetOrUpdateSetting("skills.gainChanceMultiplier", 1.0); ;
 
                 if (gc < 0.01)
                 {
